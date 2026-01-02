@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="sommer.systems - Cloud-Infrastruktur, die mit Ihrem Unternehmen waechst. IT-Cloud-Consulting aus Deutschland.">
+    <title>sommer.systems - Cloud Consulting</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset and Base Styles */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-bg: #0f172a;
+            --secondary-bg: #1e293b;
+            --accent: #3b82f6;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            transition: background 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-btn span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--text-primary);
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.3);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.95));
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--text-primary);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 6rem 2rem;
+        }
+
+        .section-alt {
+            background: var(--secondary-bg);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .service-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--accent);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--text-primary);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .service-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Technologies Section */
+        .tech-category {
+            margin-bottom: 3rem;
+        }
+
+        .tech-category:last-child {
+            margin-bottom: 0;
+        }
+
+        .tech-category h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .tech-item {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            padding: 1rem 1.25rem;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .tech-item:hover {
+            color: var(--text-primary);
+            border-color: var(--accent);
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-meta span {
+            font-size: 0.8rem;
+            color: var(--accent);
+            background: rgba(59, 130, 246, 0.1);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+        }
+
+        .project-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .project-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-results {
+            border-top: 1px solid var(--glass-border);
+            padding-top: 1rem;
+        }
+
+        .project-results li {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .project-results li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.5em;
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        /* Stats Section */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 2rem;
+        }
+
+        .stat-number {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        /* Team Section */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .team-card {
+            text-align: center;
+        }
+
+        .team-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            overflow: hidden;
+            border: 3px solid var(--glass-border);
+            transition: border-color 0.3s ease;
+        }
+
+        .team-card:hover .team-avatar {
+            border-color: var(--accent);
+        }
+
+        .team-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .team-avatar-placeholder {
+            width: 100%;
+            height: 100%;
+            background: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .team-card h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .team-card p {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-content p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-email {
+            display: inline-block;
+            font-size: 1.5rem;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .contact-email:hover {
+            color: #60a5fa;
+        }
+
+        .contact-name {
+            color: var(--text-secondary);
+            margin-top: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary-bg);
+            padding: 2rem;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .footer-copyright {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .footer-made {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            text-align: center;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--secondary-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .modal-close:hover {
+            color: var(--text-primary);
+        }
+
+        .modal h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        /* Scroll Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(15, 23, 42, 0.98);
+                flex-direction: column;
+                padding: 1rem;
+                gap: 0;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                border-bottom: 1px solid var(--glass-border);
+            }
+
+            .nav-links li:last-child {
+                border-bottom: none;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 1rem;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .mobile-menu-btn.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            .mobile-menu-btn.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .mobile-menu-btn.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(5px, -5px);
+            }
+
+            section {
+                padding: 4rem 1rem;
+            }
+
+            .section-header {
+                margin-bottom: 3rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-links {
+                order: 2;
+            }
+
+            .footer-copyright {
+                order: 1;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.75rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">sommer.systems</a>
+            <button class="mobile-menu-btn" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="#leistungen">Leistungen</a></li>
+                <li><a href="#technologien">Technologien</a></li>
+                <li><a href="#projekte">Projekte</a></li>
+                <li><a href="#team">Team</a></li>
+                <li><a href="#kontakt">Kontakt</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Cloud-Infrastruktur, die mit Ihrem Unternehmen waechst</h1>
+            <p>Wir begleiten mittelstaendische Unternehmen bei der Cloud-Transformation. Von der Strategie ueber die Migration bis zum laufenden Betrieb -- herstellerunabhaengig und mit deutschem Datenschutzverstaendnis.</p>
+            <a href="#kontakt" class="btn-primary">Kontakt aufnehmen</a>
+        </div>
+    </section>
+
+    <!-- Leistungen / Services -->
+    <section id="leistungen">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Was wir tun</h2>
+                <p>Wir unterstuetzen Unternehmen in jeder Phase ihrer Cloud-Journey. Unsere Leistungen sind modular -- vom einmaligen Projekt bis zur langfristigen Partnerschaft.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M12 12v6M12 12l3 3M12 12l-3 3" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3>Cloud Migration</h3>
+                    <p>Sichere Migration Ihrer bestehenden Systeme zu AWS, Azure oder Google Cloud. Wir analysieren Ihre Infrastruktur, entwickeln eine Migrationsstrategie und fuehren den Umzug mit minimaler Downtime durch.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <polyline points="16 18 22 12 16 6" stroke-linecap="round" stroke-linejoin="round"/>
+                            <polyline points="8 6 2 12 8 18" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3>Infrastructure as Code</h3>
+                    <p>Reproduzierbare, versionierte Infrastruktur mit Terraform, Pulumi oder CloudFormation. Schluss mit manuellen Konfigurationen -- Ihre gesamte Umgebung wird zum auditierbaren Code.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="3" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3>DevOps und CI/CD</h3>
+                    <p>Automatisierte Build-, Test- und Deployment-Pipelines. Wir implementieren GitOps-Workflows, Container-Orchestrierung mit Kubernetes und etablieren DevOps-Kultur in Ihrem Team.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3>Managed Cloud Services</h3>
+                    <p>Laufende Betreuung Ihrer Cloud-Infrastruktur. Monitoring, Incident Response, Kostenoptimierung und regelmaessige Reviews. Sie konzentrieren sich auf Ihr Kerngeschaeft.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technologien -->
+    <section id="technologien" class="section-alt">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Unsere Technologien</h2>
+                <p>Wir sind zertifizierte Experten fuer die fuehrenden Cloud-Plattformen und setzen auf bewaehrte Open-Source-Tools. Herstellerunabhaengig beraten wir Sie zur optimalen Loesung fuer Ihren Use Case.</p>
+            </div>
+
+            <div class="tech-category fade-in">
+                <h3>Cloud-Plattformen</h3>
+                <div class="tech-grid">
+                    <div class="tech-item">Amazon Web Services</div>
+                    <div class="tech-item">Microsoft Azure</div>
+                    <div class="tech-item">Google Cloud Platform</div>
+                </div>
+            </div>
+
+            <div class="tech-category fade-in">
+                <h3>Container und Orchestrierung</h3>
+                <div class="tech-grid">
+                    <div class="tech-item">Docker</div>
+                    <div class="tech-item">Kubernetes</div>
+                    <div class="tech-item">Amazon ECS</div>
+                    <div class="tech-item">Azure Kubernetes Service</div>
+                </div>
+            </div>
+
+            <div class="tech-category fade-in">
+                <h3>Infrastructure as Code</h3>
+                <div class="tech-grid">
+                    <div class="tech-item">Terraform</div>
+                    <div class="tech-item">Ansible</div>
+                    <div class="tech-item">AWS CloudFormation</div>
+                    <div class="tech-item">Pulumi</div>
+                </div>
+            </div>
+
+            <div class="tech-category fade-in">
+                <h3>CI/CD und Automation</h3>
+                <div class="tech-grid">
+                    <div class="tech-item">GitHub Actions</div>
+                    <div class="tech-item">GitLab CI/CD</div>
+                    <div class="tech-item">Jenkins</div>
+                    <div class="tech-item">ArgoCD</div>
+                </div>
+            </div>
+
+            <div class="tech-category fade-in">
+                <h3>Monitoring und Observability</h3>
+                <div class="tech-grid">
+                    <div class="tech-item">Prometheus</div>
+                    <div class="tech-item">Grafana</div>
+                    <div class="tech-item">Datadog</div>
+                    <div class="tech-item">AWS CloudWatch</div>
+                </div>
+            </div>
+
+            <div class="tech-category fade-in">
+                <h3>Datenbanken</h3>
+                <div class="tech-grid">
+                    <div class="tech-item">PostgreSQL</div>
+                    <div class="tech-item">MongoDB</div>
+                    <div class="tech-item">Redis</div>
+                    <div class="tech-item">Amazon RDS / Azure SQL</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projekte -->
+    <section id="projekte">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Ausgewaehlte Projekte</h2>
+                <p>Ein Auszug aus unseren erfolgreich abgeschlossenen Projekten. Jedes Unternehmen hat individuelle Anforderungen -- wir finden die passende Loesung.</p>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card fade-in">
+                    <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80" alt="Server-Raum" class="project-image">
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <span>Retail</span>
+                            <span>AWS</span>
+                        </div>
+                        <h3>E-Commerce-Plattform Migration</h3>
+                        <p>Migration einer gewachsenen On-Premise-Infrastruktur zu Amazon Web Services. Umstellung auf containerisierte Microservices mit EKS, Implementierung von Auto-Scaling fuer Lastspitzen im Weihnachtsgeschaeft.</p>
+                        <ul class="project-results">
+                            <li>40% Reduktion der Infrastrukturkosten</li>
+                            <li>Zero-Downtime-Migration</li>
+                            <li>Skalierung von 100 auf 10.000 gleichzeitige Nutzer</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="project-card fade-in">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80" alt="Finanz-Dashboard" class="project-image">
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <span>FinTech</span>
+                            <span>Azure + GCP</span>
+                        </div>
+                        <h3>Multi-Cloud-Architektur fuer FinTech</h3>
+                        <p>Konzeption und Umsetzung einer Multi-Cloud-Strategie fuer ein wachsendes FinTech-Unternehmen. Kritische Workloads auf Azure (BaFin-Compliance), Analytics und Machine Learning auf GCP.</p>
+                        <ul class="project-results">
+                            <li>Vollstaendige BaFin-Compliance</li>
+                            <li>Georedundantes Disaster Recovery</li>
+                            <li>Vendor-Lock-in minimiert</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="project-card fade-in">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80" alt="Modernes Buero" class="project-image">
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <span>SaaS</span>
+                            <span>GCP</span>
+                        </div>
+                        <h3>Startup Cloud-Native Infrastruktur</h3>
+                        <p>Aufbau der gesamten Infrastruktur fuer ein SaaS-Startup von Tag eins. Kubernetes-Cluster auf GKE, vollautomatisierte CI/CD-Pipeline, Infrastructure as Code mit Terraform.</p>
+                        <ul class="project-results">
+                            <li>Time-to-Market um 60% verkuerzt</li>
+                            <li>Deployment-Frequenz: mehrfach taeglich</li>
+                            <li>Infrastrukturkosten unter Kontrolle</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="project-card fade-in">
+                    <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80" alt="Business Meeting" class="project-image">
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <span>Maschinenbau</span>
+                            <span>Azure</span>
+                        </div>
+                        <h3>Mittelstand Digitalisierung</h3>
+                        <p>Abloesung einer Legacy-Serverlandschaft bei einem mittelstaendischen Maschinenbauer. Migration zu Azure, Einfuehrung von Azure DevOps, Integration mit Microsoft 365 und Power Platform.</p>
+                        <ul class="project-results">
+                            <li>Wartungsaufwand um 70% reduziert</li>
+                            <li>Erstmals CI/CD im Unternehmen etabliert</li>
+                            <li>Grundlage fuer weitere Digitalisierung</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kennzahlen / Stats -->
+    <section class="section-alt">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item fade-in">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Cloud-Projekte erfolgreich umgesetzt</div>
+                </div>
+                <div class="stat-item fade-in">
+                    <div class="stat-number">12</div>
+                    <div class="stat-label">zertifizierte Cloud-Experten</div>
+                </div>
+                <div class="stat-item fade-in">
+                    <div class="stat-number">99,9%</div>
+                    <div class="stat-label">Verfuegbarkeit unserer Managed Services</div>
+                </div>
+                <div class="stat-item fade-in">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">Cloud-Plattformen, ein Ansprechpartner</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team -->
+    <section id="team">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Unser Team</h2>
+                <p>Hinter sommer.systems steht ein Team aus erfahrenen Cloud-Architekten, DevOps-Engineers und Consultants. Wir kombinieren technische Exzellenz mit pragmatischer Beratung.</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-card fade-in">
+                    <div class="team-avatar">
+                        <div class="team-avatar-placeholder">FS</div>
+                    </div>
+                    <h3>Felix Sommer</h3>
+                    <p>Gruender und Cloud Architect</p>
+                </div>
+                <div class="team-card fade-in">
+                    <div class="team-avatar">
+                        <div class="team-avatar-placeholder">CE</div>
+                    </div>
+                    <h3>Carina Eissner</h3>
+                    <p>Senior Cloud Solutions Architect</p>
+                </div>
+                <div class="team-card fade-in">
+                    <div class="team-avatar">
+                        <div class="team-avatar-placeholder">FR</div>
+                    </div>
+                    <h3>Felix Rothgaengel</h3>
+                    <p>Senior DevOps Engineer</p>
+                </div>
+                <div class="team-card fade-in">
+                    <div class="team-avatar">
+                        <div class="team-avatar-placeholder">NW</div>
+                    </div>
+                    <h3>Nathalie Wiehl</h3>
+                    <p>Senior DevOps Engineer</p>
+                </div>
+                <div class="team-card fade-in">
+                    <div class="team-avatar">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=200&q=80" alt="Markus Braun">
+                    </div>
+                    <h3>Markus Braun</h3>
+                    <p>DevOps Engineer</p>
+                </div>
+                <div class="team-card fade-in">
+                    <div class="team-avatar">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80" alt="Sarah Klein">
+                    </div>
+                    <h3>Sarah Klein</h3>
+                    <p>Infrastructure Engineer</p>
+                </div>
+                <div class="team-card fade-in">
+                    <div class="team-avatar">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=200&q=80" alt="Daniel Meier">
+                    </div>
+                    <h3>Daniel Meier</h3>
+                    <p>Infrastructure Engineer</p>
+                </div>
+                <div class="team-card fade-in">
+                    <div class="team-avatar">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=200&q=80" alt="Julia Fischer">
+                    </div>
+                    <h3>Julia Fischer</h3>
+                    <p>Cloud Consultant</p>
+                </div>
+                <div class="team-card fade-in">
+                    <div class="team-avatar">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80" alt="Maximilian Wagner">
+                    </div>
+                    <h3>Maximilian Wagner</h3>
+                    <p>Cloud Consultant</p>
+                </div>
+                <div class="team-card fade-in">
+                    <div class="team-avatar">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=200&q=80" alt="Anna Schneider">
+                    </div>
+                    <h3>Anna Schneider</h3>
+                    <p>Project Management</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kontakt -->
+    <section id="kontakt" class="section-alt">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Kontakt</h2>
+            </div>
+            <div class="contact-content fade-in">
+                <p>Sie planen ein Cloud-Projekt oder moechten Ihre bestehende Infrastruktur optimieren? Wir freuen uns auf Ihre Nachricht.</p>
+                <a href="mailto:kontakt@sommer.systems" class="contact-email">kontakt@sommer.systems</a>
+                <p class="contact-name">Felix Sommer</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#impressum" onclick="openModal('impressum-modal'); return false;">Impressum</a>
+                <a href="#datenschutz" onclick="openModal('datenschutz-modal'); return false;">Datenschutz</a>
+            </div>
+            <div class="footer-copyright">Copyright 2026 sommer.systems</div>
+            <div class="footer-made">Made in Germany</div>
+        </div>
+    </footer>
+
+    <!-- Impressum Modal -->
+    <div id="impressum-modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('impressum-modal')">&times;</button>
+            <h2>Impressum</h2>
+            <p><strong>sommer.systems</strong><br>Inhaber: Felix Sommer</p>
+            <p><strong>E-Mail:</strong> kontakt@sommer.systems</p>
+            <p><strong>Verantwortlich fuer den Inhalt nach § 55 Abs. 2 RStV:</strong><br>Felix Sommer</p>
+        </div>
+    </div>
+
+    <!-- Datenschutz Modal -->
+    <div id="datenschutz-modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('datenschutz-modal')">&times;</button>
+            <h2>Datenschutzerklaerung</h2>
+            <p><strong>Allgemeiner Hinweis</strong></p>
+            <p>Diese Website erhebt und speichert keine personenbezogenen Daten. Es werden keine Cookies verwendet und kein Tracking eingesetzt.</p>
+            <p><strong>Externe Inhalte</strong></p>
+            <p>Diese Website bindet Bilder von Unsplash sowie Schriftarten von Google Fonts ein. Beim Abruf dieser Inhalte wird Ihre IP-Adresse an die jeweiligen Anbieter uebermittelt.</p>
+            <p><strong>Kontaktaufnahme</strong></p>
+            <p>Wenn Sie uns per E-Mail kontaktieren, werden Ihre Angaben zur Bearbeitung der Anfrage und fuer den Fall von Anschlussfragen bei uns gespeichert.</p>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenuBtn.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenuBtn.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Modal functions
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Close modal on outside click
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal.active').forEach(modal => {
+                    modal.classList.remove('active');
+                });
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Scroll animation for fade-in elements
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
