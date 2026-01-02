@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="sommer.systems - Cloud-Infrastruktur, die mit Ihrem Unternehmen waechst. IT-Cloud-Consulting aus Deutschland.">
+    <meta name="description" content="sommer.systems - Cloud-Infrastruktur, die mit Ihrem Unternehmen wächst. IT-Cloud-Consulting aus Deutschland.">
     <title>sommer.systems - Cloud Consulting</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,6 +20,7 @@
             --primary-bg: #0f172a;
             --secondary-bg: #1e293b;
             --accent: #3b82f6;
+            --accent-light: #60a5fa;
             --text-primary: #f8fafc;
             --text-secondary: #94a3b8;
             --glass: rgba(255, 255, 255, 0.05);
@@ -247,44 +248,152 @@
             font-size: 0.95rem;
         }
 
-        /* Technologies Section */
-        .tech-category {
-            margin-bottom: 3rem;
-        }
-
-        .tech-category:last-child {
-            margin-bottom: 0;
-        }
-
-        .tech-category h3 {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .tech-grid {
+        /* Technologies Section - New Design */
+        .tech-intro {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 1rem;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 4rem;
         }
 
-        .tech-item {
+        .tech-intro-text h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-light);
+        }
+
+        .tech-intro-text p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .tech-intro-image {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .tech-intro-image img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 16px;
+        }
+
+        .tech-intro-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), transparent);
+            border-radius: 16px;
+        }
+
+        .tech-categories {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .tech-category-card {
             background: var(--glass);
             backdrop-filter: blur(10px);
             border: 1px solid var(--glass-border);
-            border-radius: 8px;
-            padding: 1rem 1.25rem;
-            text-align: center;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            font-weight: 500;
+            border-radius: 16px;
+            padding: 1.5rem;
             transition: all 0.3s ease;
         }
 
-        .tech-item:hover {
+        .tech-category-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .tech-category-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .tech-category-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tech-category-icon svg {
+            width: 20px;
+            height: 20px;
+            stroke: white;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .tech-category-card h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .tech-list {
+            list-style: none;
+        }
+
+        .tech-list li {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            padding: 0.4rem 0;
+            border-bottom: 1px solid var(--glass-border);
+            transition: color 0.3s ease;
+        }
+
+        .tech-list li:last-child {
+            border-bottom: none;
+        }
+
+        .tech-list li:hover {
+            color: var(--text-primary);
+        }
+
+        /* Partner Logos Section */
+        .partner-section {
+            margin-top: 4rem;
+            text-align: center;
+        }
+
+        .partner-section h3 {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 2rem;
+        }
+
+        .partner-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .partner-logo {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .partner-logo:hover {
             color: var(--text-primary);
             border-color: var(--accent);
             background: rgba(59, 130, 246, 0.1);
@@ -341,7 +450,7 @@
             margin-bottom: 1rem;
         }
 
-        .project-card p {
+        .project-card > .project-content > p {
             color: var(--text-secondary);
             font-size: 0.95rem;
             margin-bottom: 1.5rem;
@@ -350,6 +459,7 @@
         .project-results {
             border-top: 1px solid var(--glass-border);
             padding-top: 1rem;
+            list-style: none;
         }
 
         .project-results li {
@@ -371,7 +481,101 @@
             border-radius: 50%;
         }
 
+        /* Feature Highlight Section */
+        .feature-highlight {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin: 4rem 0;
+        }
+
+        .feature-highlight.reverse {
+            direction: rtl;
+        }
+
+        .feature-highlight.reverse > * {
+            direction: ltr;
+        }
+
+        .feature-image {
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .feature-image img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+        }
+
+        .feature-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), transparent);
+        }
+
+        .feature-content h3 {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-content p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .feature-list {
+            list-style: none;
+        }
+
+        .feature-list li {
+            color: var(--text-secondary);
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .feature-list li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.9em;
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
         /* Stats Section */
+        .stats-section {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stats-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.15);
+        }
+
+        .stats-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.9));
+        }
+
+        .stats-content {
+            position: relative;
+            z-index: 1;
+        }
+
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -429,7 +633,7 @@
         .team-avatar-placeholder {
             width: 100%;
             height: 100%;
-            background: var(--accent);
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
             display: flex;
             align-items: center;
             justify-content: center;
@@ -450,16 +654,38 @@
         }
 
         /* Contact Section */
-        .contact-content {
-            text-align: center;
-            max-width: 600px;
-            margin: 0 auto;
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
         }
 
-        .contact-content p {
+        .contact-image {
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .contact-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        .contact-content {
+            text-align: left;
+        }
+
+        .contact-content h3 {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-content > p {
             color: var(--text-secondary);
             margin-bottom: 2rem;
             font-size: 1.1rem;
+            line-height: 1.8;
         }
 
         .contact-email {
@@ -593,6 +819,23 @@
         }
 
         /* Mobile Responsive */
+        @media (max-width: 968px) {
+            .tech-intro,
+            .feature-highlight,
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .feature-highlight.reverse {
+                direction: ltr;
+            }
+
+            .tech-categories {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
         @media (max-width: 768px) {
             nav {
                 padding: 1rem;
@@ -667,6 +910,14 @@
             .footer-copyright {
                 order: 1;
             }
+
+            .tech-categories {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-content {
+                text-align: center;
+            }
         }
 
         @media (max-width: 480px) {
@@ -680,6 +931,15 @@
 
             .team-grid {
                 grid-template-columns: repeat(2, 1fr);
+            }
+
+            .partner-logos {
+                gap: 1rem;
+            }
+
+            .partner-logo {
+                padding: 1rem;
+                font-size: 0.8rem;
             }
         }
     </style>
@@ -709,8 +969,8 @@
         <div class="hero-bg"></div>
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h1>Cloud-Infrastruktur, die mit Ihrem Unternehmen waechst</h1>
-            <p>Wir begleiten mittelstaendische Unternehmen bei der Cloud-Transformation. Von der Strategie ueber die Migration bis zum laufenden Betrieb -- herstellerunabhaengig und mit deutschem Datenschutzverstaendnis.</p>
+            <h1>Cloud-Infrastruktur, die mit Ihrem Unternehmen wächst</h1>
+            <p>Wir begleiten mittelständische Unternehmen bei der Cloud-Transformation. Von der Strategie über die Migration bis zum laufenden Betrieb, herstellerunabhängig und mit deutschem Datenschutzverständnis.</p>
             <a href="#kontakt" class="btn-primary">Kontakt aufnehmen</a>
         </div>
     </section>
@@ -720,7 +980,7 @@
         <div class="container">
             <div class="section-header fade-in">
                 <h2>Was wir tun</h2>
-                <p>Wir unterstuetzen Unternehmen in jeder Phase ihrer Cloud-Journey. Unsere Leistungen sind modular -- vom einmaligen Projekt bis zur langfristigen Partnerschaft.</p>
+                <p>Wir unterstützen Unternehmen in jeder Phase ihrer Cloud-Journey. Unsere Leistungen sind modular, vom einmaligen Projekt bis zur langfristigen Partnerschaft.</p>
             </div>
             <div class="services-grid">
                 <div class="service-card fade-in">
@@ -731,7 +991,7 @@
                         </svg>
                     </div>
                     <h3>Cloud Migration</h3>
-                    <p>Sichere Migration Ihrer bestehenden Systeme zu AWS, Azure oder Google Cloud. Wir analysieren Ihre Infrastruktur, entwickeln eine Migrationsstrategie und fuehren den Umzug mit minimaler Downtime durch.</p>
+                    <p>Sichere Migration Ihrer bestehenden Systeme zu AWS, Azure oder Google Cloud. Wir analysieren Ihre Infrastruktur, entwickeln eine Migrationsstrategie und führen den Umzug mit minimaler Downtime durch.</p>
                 </div>
                 <div class="service-card fade-in">
                     <div class="service-icon">
@@ -741,7 +1001,7 @@
                         </svg>
                     </div>
                     <h3>Infrastructure as Code</h3>
-                    <p>Reproduzierbare, versionierte Infrastruktur mit Terraform, Pulumi oder CloudFormation. Schluss mit manuellen Konfigurationen -- Ihre gesamte Umgebung wird zum auditierbaren Code.</p>
+                    <p>Reproduzierbare, versionierte Infrastruktur mit Terraform, Pulumi oder CloudFormation. Schluss mit manuellen Konfigurationen: Ihre gesamte Umgebung wird zum auditierbaren Code.</p>
                 </div>
                 <div class="service-card fade-in">
                     <div class="service-icon">
@@ -761,7 +1021,24 @@
                         </svg>
                     </div>
                     <h3>Managed Cloud Services</h3>
-                    <p>Laufende Betreuung Ihrer Cloud-Infrastruktur. Monitoring, Incident Response, Kostenoptimierung und regelmaessige Reviews. Sie konzentrieren sich auf Ihr Kerngeschaeft.</p>
+                    <p>Laufende Betreuung Ihrer Cloud-Infrastruktur. Monitoring, Incident Response, Kostenoptimierung und regelmäßige Reviews. Sie konzentrieren sich auf Ihr Kerngeschäft.</p>
+                </div>
+            </div>
+
+            <!-- Feature Highlight -->
+            <div class="feature-highlight fade-in">
+                <div class="feature-image">
+                    <img src="https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?auto=format&fit=crop&w=800&q=80" alt="Cloud Infrastructure">
+                </div>
+                <div class="feature-content">
+                    <h3>Warum Cloud?</h3>
+                    <p>Die Cloud bietet Unternehmen jeder Größe die Möglichkeit, IT-Ressourcen flexibel zu nutzen und nur für das zu zahlen, was tatsächlich gebraucht wird.</p>
+                    <ul class="feature-list">
+                        <li>Skalierbarkeit bei Lastspitzen</li>
+                        <li>Reduzierte Investitionskosten</li>
+                        <li>Höhere Verfügbarkeit und Ausfallsicherheit</li>
+                        <li>Schnellere Time-to-Market</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -772,65 +1049,136 @@
         <div class="container">
             <div class="section-header fade-in">
                 <h2>Unsere Technologien</h2>
-                <p>Wir sind zertifizierte Experten fuer die fuehrenden Cloud-Plattformen und setzen auf bewaehrte Open-Source-Tools. Herstellerunabhaengig beraten wir Sie zur optimalen Loesung fuer Ihren Use Case.</p>
+                <p>Wir sind zertifizierte Experten für die führenden Cloud-Plattformen und setzen auf bewährte Open-Source-Tools. Herstellerunabhängig beraten wir Sie zur optimalen Lösung für Ihren Use Case.</p>
             </div>
 
-            <div class="tech-category fade-in">
-                <h3>Cloud-Plattformen</h3>
-                <div class="tech-grid">
-                    <div class="tech-item">Amazon Web Services</div>
-                    <div class="tech-item">Microsoft Azure</div>
-                    <div class="tech-item">Google Cloud Platform</div>
+            <div class="tech-intro fade-in">
+                <div class="tech-intro-text">
+                    <h3>Moderne Infrastruktur</h3>
+                    <p>Unser Tech-Stack umfasst alle relevanten Technologien für den Aufbau und Betrieb skalierbarer Cloud-Infrastruktur. Wir wählen die Werkzeuge, die am besten zu Ihren Anforderungen passen.</p>
+                </div>
+                <div class="tech-intro-image">
+                    <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80" alt="Server Infrastructure">
                 </div>
             </div>
 
-            <div class="tech-category fade-in">
-                <h3>Container und Orchestrierung</h3>
-                <div class="tech-grid">
-                    <div class="tech-item">Docker</div>
-                    <div class="tech-item">Kubernetes</div>
-                    <div class="tech-item">Amazon ECS</div>
-                    <div class="tech-item">Azure Kubernetes Service</div>
+            <div class="tech-categories">
+                <div class="tech-category-card fade-in">
+                    <div class="tech-category-header">
+                        <div class="tech-category-icon">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h3>Cloud-Plattformen</h3>
+                    </div>
+                    <ul class="tech-list">
+                        <li>Amazon Web Services</li>
+                        <li>Microsoft Azure</li>
+                        <li>Google Cloud Platform</li>
+                    </ul>
+                </div>
+
+                <div class="tech-category-card fade-in">
+                    <div class="tech-category-header">
+                        <div class="tech-category-icon">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="2" y="3" width="20" height="14" rx="2" ry="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <line x1="8" y1="21" x2="16" y2="21" stroke-linecap="round" stroke-linejoin="round"/>
+                                <line x1="12" y1="17" x2="12" y2="21" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h3>Container</h3>
+                    </div>
+                    <ul class="tech-list">
+                        <li>Docker</li>
+                        <li>Kubernetes</li>
+                        <li>Amazon ECS</li>
+                        <li>Azure Kubernetes Service</li>
+                    </ul>
+                </div>
+
+                <div class="tech-category-card fade-in">
+                    <div class="tech-category-header">
+                        <div class="tech-category-icon">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <polyline points="16 18 22 12 16 6" stroke-linecap="round" stroke-linejoin="round"/>
+                                <polyline points="8 6 2 12 8 18" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h3>Infrastructure as Code</h3>
+                    </div>
+                    <ul class="tech-list">
+                        <li>Terraform</li>
+                        <li>Ansible</li>
+                        <li>AWS CloudFormation</li>
+                        <li>Pulumi</li>
+                    </ul>
+                </div>
+
+                <div class="tech-category-card fade-in">
+                    <div class="tech-category-header">
+                        <div class="tech-category-icon">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <polyline points="23 4 23 10 17 10" stroke-linecap="round" stroke-linejoin="round"/>
+                                <polyline points="1 20 1 14 7 14" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h3>CI/CD</h3>
+                    </div>
+                    <ul class="tech-list">
+                        <li>GitHub Actions</li>
+                        <li>GitLab CI/CD</li>
+                        <li>Jenkins</li>
+                        <li>ArgoCD</li>
+                    </ul>
+                </div>
+
+                <div class="tech-category-card fade-in">
+                    <div class="tech-category-header">
+                        <div class="tech-category-icon">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h3>Monitoring</h3>
+                    </div>
+                    <ul class="tech-list">
+                        <li>Prometheus</li>
+                        <li>Grafana</li>
+                        <li>Datadog</li>
+                        <li>AWS CloudWatch</li>
+                    </ul>
+                </div>
+
+                <div class="tech-category-card fade-in">
+                    <div class="tech-category-header">
+                        <div class="tech-category-icon">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <ellipse cx="12" cy="5" rx="9" ry="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h3>Datenbanken</h3>
+                    </div>
+                    <ul class="tech-list">
+                        <li>PostgreSQL</li>
+                        <li>MongoDB</li>
+                        <li>Redis</li>
+                        <li>Amazon RDS / Azure SQL</li>
+                    </ul>
                 </div>
             </div>
 
-            <div class="tech-category fade-in">
-                <h3>Infrastructure as Code</h3>
-                <div class="tech-grid">
-                    <div class="tech-item">Terraform</div>
-                    <div class="tech-item">Ansible</div>
-                    <div class="tech-item">AWS CloudFormation</div>
-                    <div class="tech-item">Pulumi</div>
-                </div>
-            </div>
-
-            <div class="tech-category fade-in">
-                <h3>CI/CD und Automation</h3>
-                <div class="tech-grid">
-                    <div class="tech-item">GitHub Actions</div>
-                    <div class="tech-item">GitLab CI/CD</div>
-                    <div class="tech-item">Jenkins</div>
-                    <div class="tech-item">ArgoCD</div>
-                </div>
-            </div>
-
-            <div class="tech-category fade-in">
-                <h3>Monitoring und Observability</h3>
-                <div class="tech-grid">
-                    <div class="tech-item">Prometheus</div>
-                    <div class="tech-item">Grafana</div>
-                    <div class="tech-item">Datadog</div>
-                    <div class="tech-item">AWS CloudWatch</div>
-                </div>
-            </div>
-
-            <div class="tech-category fade-in">
-                <h3>Datenbanken</h3>
-                <div class="tech-grid">
-                    <div class="tech-item">PostgreSQL</div>
-                    <div class="tech-item">MongoDB</div>
-                    <div class="tech-item">Redis</div>
-                    <div class="tech-item">Amazon RDS / Azure SQL</div>
+            <div class="partner-section fade-in">
+                <h3>Zertifizierte Partnerschaften</h3>
+                <div class="partner-logos">
+                    <div class="partner-logo">AWS Partner</div>
+                    <div class="partner-logo">Azure Partner</div>
+                    <div class="partner-logo">Google Cloud Partner</div>
+                    <div class="partner-logo">HashiCorp Partner</div>
                 </div>
             </div>
         </div>
@@ -840,19 +1188,19 @@
     <section id="projekte">
         <div class="container">
             <div class="section-header fade-in">
-                <h2>Ausgewaehlte Projekte</h2>
-                <p>Ein Auszug aus unseren erfolgreich abgeschlossenen Projekten. Jedes Unternehmen hat individuelle Anforderungen -- wir finden die passende Loesung.</p>
+                <h2>Ausgewählte Projekte</h2>
+                <p>Ein Auszug aus unseren erfolgreich abgeschlossenen Projekten. Jedes Unternehmen hat individuelle Anforderungen und wir finden die passende Lösung.</p>
             </div>
             <div class="projects-grid">
                 <div class="project-card fade-in">
-                    <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80" alt="Server-Raum" class="project-image">
+                    <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=600&q=80" alt="E-Commerce" class="project-image">
                     <div class="project-content">
                         <div class="project-meta">
                             <span>Retail</span>
                             <span>AWS</span>
                         </div>
                         <h3>E-Commerce-Plattform Migration</h3>
-                        <p>Migration einer gewachsenen On-Premise-Infrastruktur zu Amazon Web Services. Umstellung auf containerisierte Microservices mit EKS, Implementierung von Auto-Scaling fuer Lastspitzen im Weihnachtsgeschaeft.</p>
+                        <p>Migration einer gewachsenen On-Premise-Infrastruktur zu Amazon Web Services. Umstellung auf containerisierte Microservices mit EKS, Implementierung von Auto-Scaling für Lastspitzen im Weihnachtsgeschäft.</p>
                         <ul class="project-results">
                             <li>40% Reduktion der Infrastrukturkosten</li>
                             <li>Zero-Downtime-Migration</li>
@@ -867,54 +1215,73 @@
                             <span>FinTech</span>
                             <span>Azure + GCP</span>
                         </div>
-                        <h3>Multi-Cloud-Architektur fuer FinTech</h3>
-                        <p>Konzeption und Umsetzung einer Multi-Cloud-Strategie fuer ein wachsendes FinTech-Unternehmen. Kritische Workloads auf Azure (BaFin-Compliance), Analytics und Machine Learning auf GCP.</p>
+                        <h3>Multi-Cloud-Architektur für FinTech</h3>
+                        <p>Konzeption und Umsetzung einer Multi-Cloud-Strategie für ein wachsendes FinTech-Unternehmen. Kritische Workloads auf Azure (BaFin-Compliance), Analytics und Machine Learning auf GCP.</p>
                         <ul class="project-results">
-                            <li>Vollstaendige BaFin-Compliance</li>
+                            <li>Vollständige BaFin-Compliance</li>
                             <li>Georedundantes Disaster Recovery</li>
                             <li>Vendor-Lock-in minimiert</li>
                         </ul>
                     </div>
                 </div>
                 <div class="project-card fade-in">
-                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80" alt="Modernes Buero" class="project-image">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80" alt="Modernes Büro" class="project-image">
                     <div class="project-content">
                         <div class="project-meta">
                             <span>SaaS</span>
                             <span>GCP</span>
                         </div>
                         <h3>Startup Cloud-Native Infrastruktur</h3>
-                        <p>Aufbau der gesamten Infrastruktur fuer ein SaaS-Startup von Tag eins. Kubernetes-Cluster auf GKE, vollautomatisierte CI/CD-Pipeline, Infrastructure as Code mit Terraform.</p>
+                        <p>Aufbau der gesamten Infrastruktur für ein SaaS-Startup von Tag eins. Kubernetes-Cluster auf GKE, vollautomatisierte CI/CD-Pipeline, Infrastructure as Code mit Terraform.</p>
                         <ul class="project-results">
-                            <li>Time-to-Market um 60% verkuerzt</li>
-                            <li>Deployment-Frequenz: mehrfach taeglich</li>
+                            <li>Time-to-Market um 60% verkürzt</li>
+                            <li>Deployment-Frequenz: mehrfach täglich</li>
                             <li>Infrastrukturkosten unter Kontrolle</li>
                         </ul>
                     </div>
                 </div>
                 <div class="project-card fade-in">
-                    <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80" alt="Business Meeting" class="project-image">
+                    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=600&q=80" alt="Industrie" class="project-image">
                     <div class="project-content">
                         <div class="project-meta">
                             <span>Maschinenbau</span>
                             <span>Azure</span>
                         </div>
                         <h3>Mittelstand Digitalisierung</h3>
-                        <p>Abloesung einer Legacy-Serverlandschaft bei einem mittelstaendischen Maschinenbauer. Migration zu Azure, Einfuehrung von Azure DevOps, Integration mit Microsoft 365 und Power Platform.</p>
+                        <p>Ablösung einer Legacy-Serverlandschaft bei einem mittelständischen Maschinenbauer. Migration zu Azure, Einführung von Azure DevOps, Integration mit Microsoft 365 und Power Platform.</p>
                         <ul class="project-results">
                             <li>Wartungsaufwand um 70% reduziert</li>
                             <li>Erstmals CI/CD im Unternehmen etabliert</li>
-                            <li>Grundlage fuer weitere Digitalisierung</li>
+                            <li>Grundlage für weitere Digitalisierung</li>
                         </ul>
                     </div>
+                </div>
+            </div>
+
+            <!-- Feature Highlight -->
+            <div class="feature-highlight reverse fade-in">
+                <div class="feature-image">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="Analytics Dashboard">
+                </div>
+                <div class="feature-content">
+                    <h3>Messbare Ergebnisse</h3>
+                    <p>Unsere Projekte liefern konkrete, messbare Verbesserungen für Ihr Unternehmen. Wir definieren KPIs gemeinsam und tracken den Fortschritt transparent.</p>
+                    <ul class="feature-list">
+                        <li>Kostenreduktion durch optimierte Ressourcennutzung</li>
+                        <li>Höhere Entwicklerproduktivität</li>
+                        <li>Verbesserte Systemstabilität</li>
+                        <li>Schnellere Release-Zyklen</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Kennzahlen / Stats -->
-    <section class="section-alt">
-        <div class="container">
+    <section class="section-alt stats-section">
+        <div class="stats-bg"></div>
+        <div class="stats-overlay"></div>
+        <div class="container stats-content">
             <div class="stats-grid">
                 <div class="stat-item fade-in">
                     <div class="stat-number">50+</div>
@@ -926,7 +1293,7 @@
                 </div>
                 <div class="stat-item fade-in">
                     <div class="stat-number">99,9%</div>
-                    <div class="stat-label">Verfuegbarkeit unserer Managed Services</div>
+                    <div class="stat-label">Verfügbarkeit unserer Managed Services</div>
                 </div>
                 <div class="stat-item fade-in">
                     <div class="stat-number">3</div>
@@ -949,35 +1316,7 @@
                         <div class="team-avatar-placeholder">FS</div>
                     </div>
                     <h3>Felix Sommer</h3>
-                    <p>Gruender und Cloud Architect</p>
-                </div>
-                <div class="team-card fade-in">
-                    <div class="team-avatar">
-                        <div class="team-avatar-placeholder">CE</div>
-                    </div>
-                    <h3>Carina Eissner</h3>
-                    <p>Senior Cloud Solutions Architect</p>
-                </div>
-                <div class="team-card fade-in">
-                    <div class="team-avatar">
-                        <div class="team-avatar-placeholder">FR</div>
-                    </div>
-                    <h3>Felix Rothgaengel</h3>
-                    <p>Senior DevOps Engineer</p>
-                </div>
-                <div class="team-card fade-in">
-                    <div class="team-avatar">
-                        <div class="team-avatar-placeholder">NW</div>
-                    </div>
-                    <h3>Nathalie Wiehl</h3>
-                    <p>Senior DevOps Engineer</p>
-                </div>
-                <div class="team-card fade-in">
-                    <div class="team-avatar">
-                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=200&q=80" alt="Markus Braun">
-                    </div>
-                    <h3>Markus Braun</h3>
-                    <p>DevOps Engineer</p>
+                    <p>Gründer und Cloud Architect</p>
                 </div>
                 <div class="team-card fade-in">
                     <div class="team-avatar">
@@ -988,10 +1327,17 @@
                 </div>
                 <div class="team-card fade-in">
                     <div class="team-avatar">
-                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=200&q=80" alt="Daniel Meier">
+                        <div class="team-avatar-placeholder">CE</div>
                     </div>
-                    <h3>Daniel Meier</h3>
-                    <p>Infrastructure Engineer</p>
+                    <h3>Carina Eißner</h3>
+                    <p>Senior Cloud Solutions Architect</p>
+                </div>
+                <div class="team-card fade-in">
+                    <div class="team-avatar">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=200&q=80" alt="Markus Braun">
+                    </div>
+                    <h3>Markus Braun</h3>
+                    <p>DevOps Engineer</p>
                 </div>
                 <div class="team-card fade-in">
                     <div class="team-avatar">
@@ -999,6 +1345,27 @@
                     </div>
                     <h3>Julia Fischer</h3>
                     <p>Cloud Consultant</p>
+                </div>
+                <div class="team-card fade-in">
+                    <div class="team-avatar">
+                        <div class="team-avatar-placeholder">FR</div>
+                    </div>
+                    <h3>Felix Rothgängel</h3>
+                    <p>Senior DevOps Engineer</p>
+                </div>
+                <div class="team-card fade-in">
+                    <div class="team-avatar">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=200&q=80" alt="Daniel Meier">
+                    </div>
+                    <h3>Daniel Meier</h3>
+                    <p>Infrastructure Engineer</p>
+                </div>
+                <div class="team-card fade-in">
+                    <div class="team-avatar">
+                        <div class="team-avatar-placeholder">NW</div>
+                    </div>
+                    <h3>Nathalie Wiehl</h3>
+                    <p>Senior DevOps Engineer</p>
                 </div>
                 <div class="team-card fade-in">
                     <div class="team-avatar">
@@ -1024,10 +1391,16 @@
             <div class="section-header fade-in">
                 <h2>Kontakt</h2>
             </div>
-            <div class="contact-content fade-in">
-                <p>Sie planen ein Cloud-Projekt oder moechten Ihre bestehende Infrastruktur optimieren? Wir freuen uns auf Ihre Nachricht.</p>
-                <a href="mailto:kontakt@sommer.systems" class="contact-email">kontakt@sommer.systems</a>
-                <p class="contact-name">Felix Sommer</p>
+            <div class="contact-wrapper fade-in">
+                <div class="contact-image">
+                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80" alt="Büro">
+                </div>
+                <div class="contact-content">
+                    <h3>Lassen Sie uns sprechen</h3>
+                    <p>Sie planen ein Cloud-Projekt oder möchten Ihre bestehende Infrastruktur optimieren? Wir freuen uns auf Ihre Nachricht und melden uns zeitnah bei Ihnen.</p>
+                    <a href="mailto:kontakt@sommer.systems" class="contact-email">kontakt@sommer.systems</a>
+                    <p class="contact-name">Felix Sommer</p>
+                </div>
             </div>
         </div>
     </section>
@@ -1051,7 +1424,7 @@
             <h2>Impressum</h2>
             <p><strong>sommer.systems</strong><br>Inhaber: Felix Sommer</p>
             <p><strong>E-Mail:</strong> kontakt@sommer.systems</p>
-            <p><strong>Verantwortlich fuer den Inhalt nach § 55 Abs. 2 RStV:</strong><br>Felix Sommer</p>
+            <p><strong>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:</strong><br>Felix Sommer</p>
         </div>
     </div>
 
@@ -1059,13 +1432,13 @@
     <div id="datenschutz-modal" class="modal">
         <div class="modal-content">
             <button class="modal-close" onclick="closeModal('datenschutz-modal')">&times;</button>
-            <h2>Datenschutzerklaerung</h2>
+            <h2>Datenschutzerklärung</h2>
             <p><strong>Allgemeiner Hinweis</strong></p>
             <p>Diese Website erhebt und speichert keine personenbezogenen Daten. Es werden keine Cookies verwendet und kein Tracking eingesetzt.</p>
             <p><strong>Externe Inhalte</strong></p>
-            <p>Diese Website bindet Bilder von Unsplash sowie Schriftarten von Google Fonts ein. Beim Abruf dieser Inhalte wird Ihre IP-Adresse an die jeweiligen Anbieter uebermittelt.</p>
+            <p>Diese Website bindet Bilder von Unsplash sowie Schriftarten von Google Fonts ein. Beim Abruf dieser Inhalte wird Ihre IP-Adresse an die jeweiligen Anbieter übermittelt.</p>
             <p><strong>Kontaktaufnahme</strong></p>
-            <p>Wenn Sie uns per E-Mail kontaktieren, werden Ihre Angaben zur Bearbeitung der Anfrage und fuer den Fall von Anschlussfragen bei uns gespeichert.</p>
+            <p>Wenn Sie uns per E-Mail kontaktieren, werden Ihre Angaben zur Bearbeitung der Anfrage und für den Fall von Anschlussfragen bei uns gespeichert.</p>
         </div>
     </div>
 
