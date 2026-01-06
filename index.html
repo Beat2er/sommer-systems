@@ -836,109 +836,39 @@
             transform: translateZ(15px);
         }
 
-        /* Enhanced team card with 3D picture frame */
+        /* Team Section */
         .team-card {
-            background: transparent;
-            padding: 1rem;
-            transition: all 0.4s ease;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .team-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
         }
 
         .team-avatar {
-            position: relative;
-            width: 120px;
-            height: 120px;
+            width: 150px;
+            height: 150px;
+            border-radius: 12px;
+            overflow: hidden;
             margin: 0 auto 1rem;
-            border-radius: 50%;
-            transform: perspective(500px) rotateX(8deg);
-            transition: transform 0.5s ease, box-shadow 0.5s ease;
-            box-shadow:
-                0 15px 35px rgba(0, 0, 0, 0.4),
-                0 5px 15px rgba(59, 130, 246, 0.2);
+            border: 3px solid var(--accent);
+            background: var(--secondary-bg);
         }
 
-        /* Outer frame ring */
-        .team-avatar::before {
-            content: '';
-            position: absolute;
-            inset: -6px;
-            border-radius: 50%;
-            background: linear-gradient(145deg, #3b82f6, #1e40af);
-            z-index: -1;
-            box-shadow:
-                0 8px 25px rgba(0, 0, 0, 0.3),
-                inset 0 2px 4px rgba(255, 255, 255, 0.3),
-                inset 0 -2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Back shadow layer */
-        .team-avatar::after {
-            content: '';
-            position: absolute;
-            inset: -10px;
-            border-radius: 50%;
-            background: linear-gradient(145deg, #1e293b, #0f172a);
-            z-index: -2;
-            box-shadow:
-                0 20px 50px rgba(0, 0, 0, 0.5);
-        }
-
-        .team-avatar img,
-        .team-avatar-placeholder {
+        .team-avatar img {
             width: 100%;
             height: 100%;
-            border-radius: 50%;
             object-fit: cover;
-            display: block;
+            transition: transform 0.3s ease;
         }
 
-        .team-avatar-placeholder {
-            background: linear-gradient(135deg, var(--accent), var(--accent-light));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--text-primary);
-        }
-
-        /* Hover effect */
-        .team-card:hover .team-avatar {
-            transform: perspective(500px) rotateX(0deg) rotateY(12deg) translateY(-8px) scale(1.05);
-            box-shadow:
-                0 25px 50px rgba(0, 0, 0, 0.5),
-                0 10px 30px rgba(59, 130, 246, 0.3);
-        }
-
-        .team-card:nth-child(even):hover .team-avatar {
-            transform: perspective(500px) rotateX(0deg) rotateY(-12deg) translateY(-8px) scale(1.05);
-        }
-
-        .team-card h3 {
-            margin-top: 0.5rem;
-        }
-
-        /* Subtle floating animation */
-        @keyframes teamFloat {
-            0%, 100% { transform: perspective(500px) rotateX(8deg) translateY(0); }
-            50% { transform: perspective(500px) rotateX(5deg) translateY(-6px); }
-        }
-
-        .team-avatar {
-            animation: teamFloat 4s ease-in-out infinite;
-        }
-
-        .team-card:nth-child(2) .team-avatar { animation-delay: -0.4s; }
-        .team-card:nth-child(3) .team-avatar { animation-delay: -0.8s; }
-        .team-card:nth-child(4) .team-avatar { animation-delay: -1.2s; }
-        .team-card:nth-child(5) .team-avatar { animation-delay: -1.6s; }
-        .team-card:nth-child(6) .team-avatar { animation-delay: -2s; }
-        .team-card:nth-child(7) .team-avatar { animation-delay: -2.4s; }
-        .team-card:nth-child(8) .team-avatar { animation-delay: -2.8s; }
-        .team-card:nth-child(9) .team-avatar { animation-delay: -3.2s; }
-        .team-card:nth-child(10) .team-avatar { animation-delay: -3.6s; }
-
-        .team-card:hover .team-avatar {
-            animation-play-state: paused;
+        .team-card:hover .team-avatar img {
+            transform: scale(1.05);
         }
 
         /* Project card 3D depth */
@@ -1449,70 +1379,70 @@
                 <p>Hinter sommer.systems steht ein Team aus erfahrenen Cloud-Architekten, DevOps-Engineers und Consultants. Wir kombinieren technische Exzellenz mit pragmatischer Beratung.</p>
             </div>
             <div class="team-grid">
-                <div class="team-card fade-in">
+                <div class="team-card fade-in tilt-card" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.15">
                     <div class="team-avatar">
                         <img src="images/felix-sommer.jpg" alt="Felix Sommer">
                     </div>
                     <h3>Felix Sommer</h3>
                     <p>Gründer und Cloud Architect</p>
                 </div>
-                <div class="team-card fade-in">
+                <div class="team-card fade-in tilt-card" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.15">
                     <div class="team-avatar">
                         <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80" alt="Sarah Klein">
                     </div>
                     <h3>Sarah Klein</h3>
                     <p>Infrastructure Engineer</p>
                 </div>
-                <div class="team-card fade-in">
+                <div class="team-card fade-in tilt-card" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.15">
                     <div class="team-avatar">
                         <img src="images/carina-eissner.jpg" alt="Carina Eißner">
                     </div>
                     <h3>Carina Eißner</h3>
                     <p>Junior Cloud Solutions Architect</p>
                 </div>
-                <div class="team-card fade-in">
+                <div class="team-card fade-in tilt-card" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.15">
                     <div class="team-avatar">
                         <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=200&q=80" alt="Markus Braun">
                     </div>
                     <h3>Markus Braun</h3>
                     <p>DevOps Engineer</p>
                 </div>
-                <div class="team-card fade-in">
+                <div class="team-card fade-in tilt-card" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.15">
                     <div class="team-avatar">
                         <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=200&q=80" alt="Julia Fischer">
                     </div>
                     <h3>Julia Fischer</h3>
                     <p>Cloud Consultant</p>
                 </div>
-                <div class="team-card fade-in">
+                <div class="team-card fade-in tilt-card" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.15">
                     <div class="team-avatar">
                         <img src="images/felix-rothgaengel.jpg" alt="Felix Rothgängel">
                     </div>
                     <h3>Felix Rothgängel</h3>
                     <p>Software Engineer</p>
                 </div>
-                <div class="team-card fade-in">
+                <div class="team-card fade-in tilt-card" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.15">
                     <div class="team-avatar">
                         <img src="images/laurence-kamarasy.jpg" alt="Laurence Kamarasy">
                     </div>
                     <h3>Laurence Kamarasy</h3>
                     <p>Security Engineer</p>
                 </div>
-                <div class="team-card fade-in">
+                <div class="team-card fade-in tilt-card" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.15">
                     <div class="team-avatar">
                         <img src="images/nathalie-wiehl.jpg" alt="Nathalie Wiehl">
                     </div>
                     <h3>Nathalie Wiehl</h3>
                     <p>MLOps Engineer</p>
                 </div>
-                <div class="team-card fade-in">
+                <div class="team-card fade-in tilt-card" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.15">
                     <div class="team-avatar">
                         <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80" alt="Maximilian Wagner">
                     </div>
                     <h3>Maximilian Wagner</h3>
                     <p>Cloud Consultant</p>
                 </div>
-                <div class="team-card fade-in">
+                <div class="team-card fade-in tilt-card" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.15">
                     <div class="team-avatar">
                         <img src="images/philipp-sadler.jpg" alt="Philipp Sadler">
                     </div>
@@ -1790,6 +1720,7 @@
             glare: true,
             "max-glare": 0.2
         });
+
     </script>
 </body>
 </html>
