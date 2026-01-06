@@ -611,38 +611,6 @@
             text-align: center;
         }
 
-        .team-avatar {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            margin: 0 auto 1rem;
-            overflow: hidden;
-            border: 3px solid var(--glass-border);
-            transition: border-color 0.3s ease;
-        }
-
-        .team-card:hover .team-avatar {
-            border-color: var(--accent);
-        }
-
-        .team-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .team-avatar-placeholder {
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--accent), var(--accent-light));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--text-primary);
-        }
-
         .team-card h3 {
             font-size: 1rem;
             font-weight: 600;
@@ -873,84 +841,101 @@
             background: transparent;
             padding: 1rem;
             transition: all 0.4s ease;
-            perspective: 800px;
         }
 
         .team-avatar {
             position: relative;
-            transform-style: preserve-3d;
-            transform: rotateX(10deg) rotateY(0deg);
-            transition: transform 0.5s ease;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 1rem;
+            border-radius: 50%;
+            transform: perspective(500px) rotateX(8deg);
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            box-shadow:
+                0 15px 35px rgba(0, 0, 0, 0.4),
+                0 5px 15px rgba(59, 130, 246, 0.2);
         }
 
-        /* 3D Frame layers */
+        /* Outer frame ring */
         .team-avatar::before {
             content: '';
             position: absolute;
-            inset: -8px;
-            background: linear-gradient(145deg, #3a3a4a, #252530);
+            inset: -6px;
             border-radius: 50%;
-            transform: translateZ(-20px);
+            background: linear-gradient(145deg, #3b82f6, #1e40af);
+            z-index: -1;
             box-shadow:
-                0 20px 40px rgba(0, 0, 0, 0.5),
-                inset 0 2px 3px rgba(255, 255, 255, 0.1),
-                inset 0 -2px 3px rgba(0, 0, 0, 0.3);
+                0 8px 25px rgba(0, 0, 0, 0.3),
+                inset 0 2px 4px rgba(255, 255, 255, 0.3),
+                inset 0 -2px 4px rgba(0, 0, 0, 0.3);
         }
 
+        /* Back shadow layer */
         .team-avatar::after {
             content: '';
             position: absolute;
-            inset: -4px;
-            background: linear-gradient(145deg, #4a4a5a, #2a2a35);
+            inset: -10px;
             border-radius: 50%;
-            transform: translateZ(-10px);
+            background: linear-gradient(145deg, #1e293b, #0f172a);
+            z-index: -2;
             box-shadow:
-                inset 0 2px 4px rgba(255, 255, 255, 0.15),
-                inset 0 -2px 4px rgba(0, 0, 0, 0.3);
+                0 20px 50px rgba(0, 0, 0, 0.5);
         }
 
         .team-avatar img,
         .team-avatar-placeholder {
-            position: relative;
+            width: 100%;
+            height: 100%;
             border-radius: 50%;
-            transform: translateZ(0px);
-            box-shadow:
-                0 4px 15px rgba(0, 0, 0, 0.3),
-                inset 0 0 20px rgba(0, 0, 0, 0.2);
+            object-fit: cover;
+            display: block;
         }
 
-        /* Hover: tilt the frame */
+        .team-avatar-placeholder {
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        /* Hover effect */
         .team-card:hover .team-avatar {
-            transform: rotateX(0deg) rotateY(10deg) scale(1.05);
+            transform: perspective(500px) rotateX(0deg) rotateY(12deg) translateY(-8px) scale(1.05);
+            box-shadow:
+                0 25px 50px rgba(0, 0, 0, 0.5),
+                0 10px 30px rgba(59, 130, 246, 0.3);
         }
 
         .team-card:nth-child(even):hover .team-avatar {
-            transform: rotateX(0deg) rotateY(-10deg) scale(1.05);
+            transform: perspective(500px) rotateX(0deg) rotateY(-12deg) translateY(-8px) scale(1.05);
         }
 
         .team-card h3 {
-            margin-top: 1rem;
+            margin-top: 0.5rem;
         }
 
         /* Subtle floating animation */
-        @keyframes float {
-            0%, 100% { transform: rotateX(10deg) rotateY(0deg) translateY(0); }
-            50% { transform: rotateX(8deg) rotateY(2deg) translateY(-5px); }
+        @keyframes teamFloat {
+            0%, 100% { transform: perspective(500px) rotateX(8deg) translateY(0); }
+            50% { transform: perspective(500px) rotateX(5deg) translateY(-6px); }
         }
 
         .team-avatar {
-            animation: float 6s ease-in-out infinite;
+            animation: teamFloat 4s ease-in-out infinite;
         }
 
-        .team-card:nth-child(2) .team-avatar { animation-delay: -1s; }
-        .team-card:nth-child(3) .team-avatar { animation-delay: -2s; }
-        .team-card:nth-child(4) .team-avatar { animation-delay: -3s; }
-        .team-card:nth-child(5) .team-avatar { animation-delay: -4s; }
-        .team-card:nth-child(6) .team-avatar { animation-delay: -0.5s; }
-        .team-card:nth-child(7) .team-avatar { animation-delay: -1.5s; }
-        .team-card:nth-child(8) .team-avatar { animation-delay: -2.5s; }
-        .team-card:nth-child(9) .team-avatar { animation-delay: -3.5s; }
-        .team-card:nth-child(10) .team-avatar { animation-delay: -4.5s; }
+        .team-card:nth-child(2) .team-avatar { animation-delay: -0.4s; }
+        .team-card:nth-child(3) .team-avatar { animation-delay: -0.8s; }
+        .team-card:nth-child(4) .team-avatar { animation-delay: -1.2s; }
+        .team-card:nth-child(5) .team-avatar { animation-delay: -1.6s; }
+        .team-card:nth-child(6) .team-avatar { animation-delay: -2s; }
+        .team-card:nth-child(7) .team-avatar { animation-delay: -2.4s; }
+        .team-card:nth-child(8) .team-avatar { animation-delay: -2.8s; }
+        .team-card:nth-child(9) .team-avatar { animation-delay: -3.2s; }
+        .team-card:nth-child(10) .team-avatar { animation-delay: -3.6s; }
 
         .team-card:hover .team-avatar {
             animation-play-state: paused;
