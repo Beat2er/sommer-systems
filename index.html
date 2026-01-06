@@ -8,6 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
     <style>
         /* Reset and Base Styles */
         *, *::before, *::after {
@@ -110,26 +112,25 @@
             justify-content: center;
             position: relative;
             overflow: hidden;
+            background: var(--primary-bg);
         }
 
-        .hero-bg {
+        #hero-canvas {
             position: absolute;
             inset: 0;
-            background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1920&q=80');
-            background-size: cover;
-            background-position: center;
-            filter: brightness(0.3);
+            z-index: 0;
         }
 
         .hero-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to bottom, rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.95));
+            background: radial-gradient(ellipse at center, transparent 0%, rgba(15, 23, 42, 0.4) 70%, rgba(15, 23, 42, 0.8) 100%);
+            z-index: 1;
         }
 
         .hero-content {
             position: relative;
-            z-index: 1;
+            z-index: 2;
             text-align: center;
             max-width: 800px;
             padding: 2rem;
@@ -809,13 +810,59 @@
         /* Scroll Animation */
         .fade-in {
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .fade-in.visible {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        .slide-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .slide-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .slide-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Staggered animation delays */
+        .stagger-1 { transition-delay: 0.1s; }
+        .stagger-2 { transition-delay: 0.2s; }
+        .stagger-3 { transition-delay: 0.3s; }
+        .stagger-4 { transition-delay: 0.4s; }
+        .stagger-5 { transition-delay: 0.5s; }
+        .stagger-6 { transition-delay: 0.6s; }
+
+        /* Tilt card enhancements */
+        .tilt-card {
+            transform-style: preserve-3d;
+            transform: perspective(1000px);
+        }
+
+        .tilt-card .service-icon,
+        .tilt-card h3 {
+            transform: translateZ(30px);
+        }
+
+        /* Counter animation */
+        .stat-number {
+            display: inline-block;
         }
 
         /* Mobile Responsive */
@@ -966,7 +1013,7 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-bg"></div>
+        <canvas id="hero-canvas"></canvas>
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <h1>Cloud-Infrastruktur, die mit Ihrem Unternehmen wächst</h1>
@@ -983,7 +1030,7 @@
                 <p>Wir unterstützen Unternehmen in jeder Phase ihrer Cloud-Journey. Unsere Leistungen sind modular, vom einmaligen Projekt bis zur langfristigen Partnerschaft.</p>
             </div>
             <div class="services-grid">
-                <div class="service-card fade-in">
+                <div class="service-card fade-in stagger-1 tilt-card" data-tilt data-tilt-max="8" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
                     <div class="service-icon">
                         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z" stroke-linecap="round" stroke-linejoin="round"/>
@@ -993,7 +1040,7 @@
                     <h3>Cloud Migration</h3>
                     <p>Sichere Migration Ihrer bestehenden Systeme zu AWS, Azure oder Google Cloud. Wir analysieren Ihre Infrastruktur, entwickeln eine Migrationsstrategie und führen den Umzug mit minimaler Downtime durch.</p>
                 </div>
-                <div class="service-card fade-in">
+                <div class="service-card fade-in stagger-2 tilt-card" data-tilt data-tilt-max="8" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
                     <div class="service-icon">
                         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <polyline points="16 18 22 12 16 6" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1003,7 +1050,7 @@
                     <h3>Infrastructure as Code</h3>
                     <p>Reproduzierbare, versionierte Infrastruktur mit Terraform, Pulumi oder CloudFormation. Schluss mit manuellen Konfigurationen: Ihre gesamte Umgebung wird zum auditierbaren Code.</p>
                 </div>
-                <div class="service-card fade-in">
+                <div class="service-card fade-in stagger-3 tilt-card" data-tilt data-tilt-max="8" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
                     <div class="service-icon">
                         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="12" cy="12" r="3" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1013,7 +1060,7 @@
                     <h3>DevOps und CI/CD</h3>
                     <p>Automatisierte Build-, Test- und Deployment-Pipelines. Wir implementieren GitOps-Workflows, Container-Orchestrierung mit Kubernetes und etablieren DevOps-Kultur in Ihrem Team.</p>
                 </div>
-                <div class="service-card fade-in">
+                <div class="service-card fade-in stagger-4 tilt-card" data-tilt data-tilt-max="8" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
                     <div class="service-icon">
                         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1026,11 +1073,11 @@
             </div>
 
             <!-- Feature Highlight -->
-            <div class="feature-highlight fade-in">
-                <div class="feature-image">
+            <div class="feature-highlight">
+                <div class="feature-image slide-left">
                     <img src="https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?auto=format&fit=crop&w=800&q=80" alt="Cloud Infrastructure">
                 </div>
-                <div class="feature-content">
+                <div class="feature-content slide-right">
                     <h3>Warum Cloud?</h3>
                     <p>Die Cloud bietet Unternehmen jeder Größe die Möglichkeit, IT-Ressourcen flexibel zu nutzen und nur für das zu zahlen, was tatsächlich gebraucht wird.</p>
                     <ul class="feature-list">
@@ -1259,11 +1306,11 @@
             </div>
 
             <!-- Feature Highlight -->
-            <div class="feature-highlight reverse fade-in">
-                <div class="feature-image">
+            <div class="feature-highlight reverse">
+                <div class="feature-image slide-right">
                     <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="Analytics Dashboard">
                 </div>
-                <div class="feature-content">
+                <div class="feature-content slide-left">
                     <h3>Messbare Ergebnisse</h3>
                     <p>Unsere Projekte liefern konkrete, messbare Verbesserungen für Ihr Unternehmen. Wir definieren KPIs gemeinsam und tracken den Fortschritt transparent.</p>
                     <ul class="feature-list">
@@ -1283,20 +1330,20 @@
         <div class="stats-overlay"></div>
         <div class="container stats-content">
             <div class="stats-grid">
-                <div class="stat-item fade-in">
-                    <div class="stat-number">50+</div>
+                <div class="stat-item fade-in stagger-1">
+                    <div class="stat-number" data-target="50" data-suffix="+">0</div>
                     <div class="stat-label">Cloud-Projekte erfolgreich umgesetzt</div>
                 </div>
-                <div class="stat-item fade-in">
-                    <div class="stat-number">12</div>
+                <div class="stat-item fade-in stagger-2">
+                    <div class="stat-number" data-target="12">0</div>
                     <div class="stat-label">zertifizierte Cloud-Experten</div>
                 </div>
-                <div class="stat-item fade-in">
-                    <div class="stat-number">99,9%</div>
+                <div class="stat-item fade-in stagger-3">
+                    <div class="stat-number" data-target="99.9" data-suffix="%" data-decimal="true">0</div>
                     <div class="stat-label">Verfügbarkeit unserer Managed Services</div>
                 </div>
-                <div class="stat-item fade-in">
-                    <div class="stat-number">3</div>
+                <div class="stat-item fade-in stagger-4">
+                    <div class="stat-number" data-target="3">0</div>
                     <div class="stat-label">Cloud-Plattformen, ein Ansprechpartner</div>
                 </div>
             </div>
@@ -1443,7 +1490,93 @@
     </div>
 
     <script>
+        // ============================================
+        // Three.js Particle Network
+        // ============================================
+        const canvas = document.getElementById('hero-canvas');
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+        // Create particles
+        const particlesCount = 200;
+        const positions = new Float32Array(particlesCount * 3);
+        const colors = new Float32Array(particlesCount * 3);
+
+        for (let i = 0; i < particlesCount; i++) {
+            positions[i * 3] = (Math.random() - 0.5) * 10;
+            positions[i * 3 + 1] = (Math.random() - 0.5) * 10;
+            positions[i * 3 + 2] = (Math.random() - 0.5) * 10;
+
+            colors[i * 3] = 0.23 + Math.random() * 0.2;
+            colors[i * 3 + 1] = 0.51 + Math.random() * 0.2;
+            colors[i * 3 + 2] = 0.96;
+        }
+
+        const particlesGeometry = new THREE.BufferGeometry();
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+        const particlesMaterial = new THREE.PointsMaterial({
+            size: 0.05,
+            vertexColors: true,
+            transparent: true,
+            opacity: 0.8,
+            sizeAttenuation: true
+        });
+
+        const particles = new THREE.Points(particlesGeometry, particlesMaterial);
+        scene.add(particles);
+
+        // Create lines between nearby particles
+        const lineMaterial = new THREE.LineBasicMaterial({
+            color: 0x3b82f6,
+            transparent: true,
+            opacity: 0.15
+        });
+
+        camera.position.z = 5;
+
+        // Mouse interaction
+        let mouseX = 0;
+        let mouseY = 0;
+        let targetX = 0;
+        let targetY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+            mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+        });
+
+        // Animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+
+            targetX += (mouseX - targetX) * 0.02;
+            targetY += (mouseY - targetY) * 0.02;
+
+            particles.rotation.x += 0.001;
+            particles.rotation.y += 0.001;
+            particles.rotation.x += targetY * 0.01;
+            particles.rotation.y += targetX * 0.01;
+
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Handle resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // ============================================
         // Mobile menu toggle
+        // ============================================
         const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
         const navLinks = document.querySelector('.nav-links');
 
@@ -1452,7 +1585,6 @@
             navLinks.classList.toggle('active');
         });
 
-        // Close mobile menu when clicking a link
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenuBtn.classList.remove('active');
@@ -1460,7 +1592,9 @@
             });
         });
 
+        // ============================================
         // Modal functions
+        // ============================================
         function openModal(modalId) {
             document.getElementById(modalId).classList.add('active');
             document.body.style.overflow = 'hidden';
@@ -1471,7 +1605,6 @@
             document.body.style.overflow = '';
         }
 
-        // Close modal on outside click
         document.querySelectorAll('.modal').forEach(modal => {
             modal.addEventListener('click', (e) => {
                 if (e.target === modal) {
@@ -1481,7 +1614,6 @@
             });
         });
 
-        // Close modal on Escape key
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 document.querySelectorAll('.modal.active').forEach(modal => {
@@ -1491,7 +1623,9 @@
             }
         });
 
-        // Scroll animation for fade-in elements
+        // ============================================
+        // Scroll animations
+        // ============================================
         const observerOptions = {
             root: null,
             rootMargin: '0px',
@@ -1502,12 +1636,68 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
+
+                    // Trigger counter animation for stat numbers
+                    if (entry.target.classList.contains('stat-item')) {
+                        const counter = entry.target.querySelector('.stat-number');
+                        if (counter && !counter.classList.contains('counted')) {
+                            animateCounter(counter);
+                            counter.classList.add('counted');
+                        }
+                    }
                 }
             });
         }, observerOptions);
 
-        document.querySelectorAll('.fade-in').forEach(el => {
+        // Observe all animated elements
+        document.querySelectorAll('.fade-in, .slide-left, .slide-right').forEach(el => {
             observer.observe(el);
+        });
+
+        // ============================================
+        // Counter Animation
+        // ============================================
+        function animateCounter(element) {
+            const target = parseFloat(element.dataset.target);
+            const suffix = element.dataset.suffix || '';
+            const isDecimal = element.dataset.decimal === 'true';
+            const duration = 2000;
+            const steps = 60;
+            const stepDuration = duration / steps;
+            let current = 0;
+            let step = 0;
+
+            const timer = setInterval(() => {
+                step++;
+                const progress = step / steps;
+                const easeProgress = 1 - Math.pow(1 - progress, 3);
+                current = target * easeProgress;
+
+                if (isDecimal) {
+                    element.textContent = current.toFixed(1).replace('.', ',') + suffix;
+                } else {
+                    element.textContent = Math.floor(current) + suffix;
+                }
+
+                if (step >= steps) {
+                    clearInterval(timer);
+                    if (isDecimal) {
+                        element.textContent = target.toFixed(1).replace('.', ',') + suffix;
+                    } else {
+                        element.textContent = target + suffix;
+                    }
+                }
+            }, stepDuration);
+        }
+
+        // ============================================
+        // Initialize Vanilla Tilt
+        // ============================================
+        VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
+            max: 8,
+            speed: 400,
+            glare: true,
+            "max-glare": 0.2
         });
     </script>
 </body>
