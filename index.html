@@ -862,27 +862,55 @@
             transform: translateZ(30px);
         }
 
-        .tilt-card .team-avatar {
-            transform: translateZ(40px);
-        }
-
         .tilt-card p,
         .tilt-card .tech-list,
         .tilt-card .project-results {
             transform: translateZ(15px);
         }
 
-        /* Enhanced team card 3D */
+        /* Enhanced team card 3D - always visible depth */
         .team-card {
-            perspective: 1000px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.4s ease;
         }
 
         .team-avatar {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            box-shadow:
+                0 4px 15px rgba(0, 0, 0, 0.3),
+                0 8px 30px rgba(59, 130, 246, 0.15),
+                inset 0 -2px 5px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        .team-avatar::after {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border-radius: 50%;
+            background: linear-gradient(145deg, rgba(255,255,255,0.1) 0%, transparent 50%, rgba(0,0,0,0.2) 100%);
+            pointer-events: none;
+        }
+
+        .team-avatar img,
+        .team-avatar-placeholder {
+            border-radius: 50%;
+        }
+
+        .team-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
         }
 
         .team-card:hover .team-avatar {
-            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+            box-shadow:
+                0 8px 25px rgba(0, 0, 0, 0.4),
+                0 15px 40px rgba(59, 130, 246, 0.25);
+            transform: scale(1.05);
         }
 
         /* Project card 3D depth */
@@ -1393,70 +1421,70 @@
                 <p>Hinter sommer.systems steht ein Team aus erfahrenen Cloud-Architekten, DevOps-Engineers und Consultants. Wir kombinieren technische Exzellenz mit pragmatischer Beratung.</p>
             </div>
             <div class="team-grid">
-                <div class="team-card fade-in tilt-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+                <div class="team-card fade-in">
                     <div class="team-avatar">
                         <img src="images/felix-sommer.jpg" alt="Felix Sommer">
                     </div>
                     <h3>Felix Sommer</h3>
                     <p>Gründer und Cloud Architect</p>
                 </div>
-                <div class="team-card fade-in tilt-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+                <div class="team-card fade-in">
                     <div class="team-avatar">
                         <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80" alt="Sarah Klein">
                     </div>
                     <h3>Sarah Klein</h3>
                     <p>Infrastructure Engineer</p>
                 </div>
-                <div class="team-card fade-in tilt-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+                <div class="team-card fade-in">
                     <div class="team-avatar">
                         <img src="images/carina-eissner.jpg" alt="Carina Eißner">
                     </div>
                     <h3>Carina Eißner</h3>
                     <p>Junior Cloud Solutions Architect</p>
                 </div>
-                <div class="team-card fade-in tilt-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+                <div class="team-card fade-in">
                     <div class="team-avatar">
                         <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=200&q=80" alt="Markus Braun">
                     </div>
                     <h3>Markus Braun</h3>
                     <p>DevOps Engineer</p>
                 </div>
-                <div class="team-card fade-in tilt-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+                <div class="team-card fade-in">
                     <div class="team-avatar">
                         <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=200&q=80" alt="Julia Fischer">
                     </div>
                     <h3>Julia Fischer</h3>
                     <p>Cloud Consultant</p>
                 </div>
-                <div class="team-card fade-in tilt-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+                <div class="team-card fade-in">
                     <div class="team-avatar">
                         <img src="images/felix-rothgaengel.jpg" alt="Felix Rothgängel">
                     </div>
                     <h3>Felix Rothgängel</h3>
                     <p>Software Engineer</p>
                 </div>
-                <div class="team-card fade-in tilt-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+                <div class="team-card fade-in">
                     <div class="team-avatar">
                         <img src="images/laurence-kamarasy.jpg" alt="Laurence Kamarasy">
                     </div>
                     <h3>Laurence Kamarasy</h3>
                     <p>Security Engineer</p>
                 </div>
-                <div class="team-card fade-in tilt-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+                <div class="team-card fade-in">
                     <div class="team-avatar">
                         <img src="images/nathalie-wiehl.jpg" alt="Nathalie Wiehl">
                     </div>
                     <h3>Nathalie Wiehl</h3>
                     <p>MLOps Engineer</p>
                 </div>
-                <div class="team-card fade-in tilt-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+                <div class="team-card fade-in">
                     <div class="team-avatar">
                         <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80" alt="Maximilian Wagner">
                     </div>
                     <h3>Maximilian Wagner</h3>
                     <p>Cloud Consultant</p>
                 </div>
-                <div class="team-card fade-in tilt-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+                <div class="team-card fade-in">
                     <div class="team-avatar">
                         <img src="images/philipp-sadler.jpg" alt="Philipp Sadler">
                     </div>
