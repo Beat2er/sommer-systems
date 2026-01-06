@@ -868,49 +868,92 @@
             transform: translateZ(15px);
         }
 
-        /* Enhanced team card 3D - always visible depth */
+        /* Enhanced team card with 3D picture frame */
         .team-card {
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            border-radius: 16px;
-            padding: 1.5rem;
+            background: transparent;
+            padding: 1rem;
             transition: all 0.4s ease;
+            perspective: 800px;
         }
 
         .team-avatar {
             position: relative;
+            transform-style: preserve-3d;
+            transform: rotateX(10deg) rotateY(0deg);
+            transition: transform 0.5s ease;
+        }
+
+        /* 3D Frame layers */
+        .team-avatar::before {
+            content: '';
+            position: absolute;
+            inset: -8px;
+            background: linear-gradient(145deg, #3a3a4a, #252530);
+            border-radius: 50%;
+            transform: translateZ(-20px);
             box-shadow:
-                0 4px 15px rgba(0, 0, 0, 0.3),
-                0 8px 30px rgba(59, 130, 246, 0.15),
-                inset 0 -2px 5px rgba(0, 0, 0, 0.2);
-            transition: all 0.4s ease;
+                0 20px 40px rgba(0, 0, 0, 0.5),
+                inset 0 2px 3px rgba(255, 255, 255, 0.1),
+                inset 0 -2px 3px rgba(0, 0, 0, 0.3);
         }
 
         .team-avatar::after {
             content: '';
             position: absolute;
-            inset: -3px;
+            inset: -4px;
+            background: linear-gradient(145deg, #4a4a5a, #2a2a35);
             border-radius: 50%;
-            background: linear-gradient(145deg, rgba(255,255,255,0.1) 0%, transparent 50%, rgba(0,0,0,0.2) 100%);
-            pointer-events: none;
+            transform: translateZ(-10px);
+            box-shadow:
+                inset 0 2px 4px rgba(255, 255, 255, 0.15),
+                inset 0 -2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .team-avatar img,
         .team-avatar-placeholder {
+            position: relative;
             border-radius: 50%;
+            transform: translateZ(0px);
+            box-shadow:
+                0 4px 15px rgba(0, 0, 0, 0.3),
+                inset 0 0 20px rgba(0, 0, 0, 0.2);
         }
 
-        .team-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--accent);
-            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
+        /* Hover: tilt the frame */
+        .team-card:hover .team-avatar {
+            transform: rotateX(0deg) rotateY(10deg) scale(1.05);
         }
+
+        .team-card:nth-child(even):hover .team-avatar {
+            transform: rotateX(0deg) rotateY(-10deg) scale(1.05);
+        }
+
+        .team-card h3 {
+            margin-top: 1rem;
+        }
+
+        /* Subtle floating animation */
+        @keyframes float {
+            0%, 100% { transform: rotateX(10deg) rotateY(0deg) translateY(0); }
+            50% { transform: rotateX(8deg) rotateY(2deg) translateY(-5px); }
+        }
+
+        .team-avatar {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .team-card:nth-child(2) .team-avatar { animation-delay: -1s; }
+        .team-card:nth-child(3) .team-avatar { animation-delay: -2s; }
+        .team-card:nth-child(4) .team-avatar { animation-delay: -3s; }
+        .team-card:nth-child(5) .team-avatar { animation-delay: -4s; }
+        .team-card:nth-child(6) .team-avatar { animation-delay: -0.5s; }
+        .team-card:nth-child(7) .team-avatar { animation-delay: -1.5s; }
+        .team-card:nth-child(8) .team-avatar { animation-delay: -2.5s; }
+        .team-card:nth-child(9) .team-avatar { animation-delay: -3.5s; }
+        .team-card:nth-child(10) .team-avatar { animation-delay: -4.5s; }
 
         .team-card:hover .team-avatar {
-            box-shadow:
-                0 8px 25px rgba(0, 0, 0, 0.4),
-                0 15px 40px rgba(59, 130, 246, 0.25);
-            transform: scale(1.05);
+            animation-play-state: paused;
         }
 
         /* Project card 3D depth */
